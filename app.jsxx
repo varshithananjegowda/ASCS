@@ -1,0 +1,193 @@
+export default function ASASDashboard() {
+
+  const logs = [
+    "IR Block Mode Activated",
+    "High Temperature Detected",
+    "Filter Position Changed to 2",
+    "Normal Mode Activated",
+    "System Initialized",
+  ];
+
+  return (
+    <div className="min-h-screen bg-black text-white flex font-sans">
+
+      {/* Sidebar */}
+      <div className="w-64 bg-[#0b0f12] border-r border-gray-800 p-5">
+        <h1 className="text-3xl font-bold text-green-400">ASAS</h1>
+
+        <p className="text-gray-400 text-sm mb-8">
+          Adaptive Spectral Agro-Voltaic System
+        </p>
+
+        <div className="space-y-4">
+          {[
+            "Dashboard",
+            "Live Data",
+            "Control",
+            "Energy",
+            "History",
+            "Alerts",
+            "Settings",
+          ].map((item, index) => (
+            <div
+              key={index}
+              className={`p-3 rounded-xl cursor-pointer transition-all ${
+                item === "Dashboard"
+                  ? "bg-green-500/20 text-green-400"
+                  : "hover:bg-gray-800 text-gray-300"
+              }`}
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="flex-1 p-6 bg-gradient-to-br from-black via-[#06111a] to-black">
+
+        {/* Top Bar */}
+        <div className="flex justify-between items-center mb-6">
+          <div>
+            <h2 className="text-2xl font-bold">
+              System Dashboard
+            </h2>
+
+            <p className="text-gray-400 text-sm">
+              Intelligent Sunlight Management System
+            </p>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <span className="text-gray-300">
+              System Status
+            </span>
+
+            <div className="bg-green-500/20 px-4 py-1 rounded-full text-green-400 font-semibold">
+              ACTIVE
+            </div>
+
+            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+          </div>
+        </div>
+
+        {/* Sensor Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+
+          <Card
+            title="Temperature"
+            value="31.8 °C"
+            color="text-green-400"
+          >
+            <p className="text-sm text-gray-400 mt-4">
+              Last Updated: 6:35 PM
+            </p>
+          </Card>
+
+          <Card
+            title="Light Intensity"
+            value="652 lux"
+            color="text-yellow-400"
+          >
+            <p className="text-sm text-gray-400 mt-4">
+              Last Updated: 6:35 PM
+            </p>
+          </Card>
+
+          <Card
+            title="Filter Mode"
+            value="IR BLOCK"
+            color="text-blue-400"
+          >
+            <p className="text-gray-400 mt-2">
+              Reducing Heat Stress
+            </p>
+          </Card>
+
+          <Card
+            title="Solar Output"
+            value="12.6 V"
+            color="text-green-400"
+          >
+            <div className="flex gap-6 mt-3 text-green-300">
+              <span>0.62 A</span>
+              <span>7.81 W</span>
+            </div>
+          </Card>
+
+        </div>
+
+        {/* Bottom Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-6">
+
+          {/* Control */}
+          <div className="bg-[#0d1520] border border-gray-800 rounded-2xl p-5 shadow-lg">
+
+            <h3 className="text-xl mb-5">
+              System Control
+            </h3>
+
+            <div className="flex flex-wrap gap-3">
+
+              <button className="bg-green-600 px-5 py-2 rounded-xl">
+                OPEN
+              </button>
+
+              <button className="bg-blue-600 px-5 py-2 rounded-xl">
+                NORMAL
+              </button>
+
+              <button className="bg-red-600 px-5 py-2 rounded-xl">
+                IR BLOCK
+              </button>
+
+            </div>
+          </div>
+
+          {/* Logs */}
+          <div className="bg-[#0d1520] border border-gray-800 rounded-2xl p-5 shadow-lg">
+
+            <h3 className="text-xl mb-5">
+              System Log
+            </h3>
+
+            <div className="space-y-4 text-gray-300">
+              {logs.map((log, index) => (
+                <div
+                  key={index}
+                  className="flex justify-between border-b border-gray-800 pb-2"
+                >
+                  <span>06:3{index}:12 PM</span>
+                  <span>{log}</span>
+                </div>
+              ))}
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+
+function Card({ title, value, color, children }) {
+
+  return (
+    <div className="bg-[#0d1520] border border-gray-800 rounded-2xl p-5 shadow-lg">
+
+      <h3 className="text-lg text-gray-300 mb-4">
+        {title}
+      </h3>
+
+      <div className={`text-5xl font-bold ${color}`}>
+        {value}
+      </div>
+
+      {children}
+
+    </div>
+  );
+}
